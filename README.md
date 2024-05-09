@@ -1,1 +1,1 @@
-# First Django Project
+#Django Project
