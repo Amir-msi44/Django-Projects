@@ -37,6 +37,13 @@
         <a href="{% url 'blog:home' %}" target="_blank" class="nav-link">Site Preview</a>
       </li>
     </ul>
+    <!-- Right navbar links -->
+    <div class="ml-auto">
+      <form method="post" action="{% url 'account:logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-light"><i class="fas fa-sign-out-alt"></i></button>
+      </form>
+    </div>
   </nav>
   <!-- /.navbar -->
 

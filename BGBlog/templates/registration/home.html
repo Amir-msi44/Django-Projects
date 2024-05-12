@@ -8,49 +8,57 @@
     Welcome {{user.get_full_name}}!
     <div class="row">
         <div class="col-12">
-            <div class="card">
-                <div class="card-body table-responsive p-0">
-                    <table class="table table-hover text-nowrap">
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Image</th>
-                                <th>Category</th>
-                                <th>Author</th>
-                                <th>Description</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                    <tbody>
-                        {% for article in object_list %}
-                            <tr>
-                                <td>
-                                    {% if article.status == 'd' or user.is_superuser %}
-                                        <a href="{% url 'account:article-update' article.pk %}">{{article.title}}</a>
-                                    {% else %}
-                                        {{article.title}}
-                                    {% endif %}
-                                </td>
-                                <td><img src="{{article.thumbnail.url}}" width="40"></td>
-                                <td>{{article.category_to_str}}</td>
-                                <td>{{article.author.get_full_name}}</td>
-                                <td>{{article.description|striptags|truncatewords:'10'}}</td>
-                                <td>{{article.publish}}</td>
-                                <td>
-                                    {% if article.status == 'p' %}
-                                        <span class="badge badge-success">Published</span>
-                                        <a target="_blank" class="badge badge-primary" href="{% url 'blog:detail' article.slug %}">Show Article in Site</a>
-                                    {% else %}
-                                        <span class="badge badge-danger">Drafted</span>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                    </table>
+            {% if object_list %}
+                <div class="card">
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Image</th>
+                                    <th>Category</th>
+                                    <th>Author</th>
+                                    <th>Description</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                        <tbody>
+                            {% for article in object_list %}
+                                <tr>
+                                    <td>
+                                        {% if article.status == 'd' or user.is_superuser %}
+                                            <a href="{% url 'account:article-update' article.pk %}">{{article.title}}</a>
+                                        {% else %}
+                                            {{article.title}}
+                                        {% endif %}
+                                    </td>
+                                    <td><img src="{{article.thumbnail.url}}" width="40"></td>
+                                    <td>{{article.category_to_str}}</td>
+                                    <td>{{article.author.get_full_name}}</td>
+                                    <td>{{article.description|striptags|truncatewords:'10'}}</td>
+                                    <td>{{article.publish}}</td>
+                                    <td>
+                                        {% if article.status == 'p' %}
+                                            <span class="badge badge-success">Published</span>
+                                            <a target="_blank" class="badge badge-primary" href="{% url 'blog:detail' article.slug %}">Show Article in Site</a>
+                                        {% else %}
+                                            <span class="badge badge-danger">Drafted</span>
+                                        {% endif %}
+
+                                        {% if user.is_superuser %}
+                                            <a class="badge text-danger" href="{% url 'account:article-delete' article.pk %}">Delete</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            {% else %}
+            <h3>No Content to Show!</h3>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

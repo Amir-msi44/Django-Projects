@@ -1,0 +1,24 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}{% block title-meta %}
+    Delete Article
+{% endblock %}{% endblock %}
+
+{% block main %}
+<div class="col-md-8 text-center mx-auto">
+  <div class="card card-danger">
+    <div class="card-header">
+      <h3 class="card-title mb-0">Delete Article</h3>
+    </div>
+    <div class="card-body py-4">
+        <form method="post">{% csrf_token %}
+            <p class="py-2">Are you sure you want to delete "{{ object }}" from "{{object.author.get_full_name}}"?</p>
+            {{ form }}
+            <input type="submit" value="Yes" class="btn btn-danger">
+            <a href="{% url 'account:home' %}" class="btn btn-secondary">No</a>
+        </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
