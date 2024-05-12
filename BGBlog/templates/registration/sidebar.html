@@ -1,4 +1,6 @@
 {% load static %}
+{% load base_tags %}
+
 
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -47,16 +49,10 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{% url 'account:home' %}" class="nav-link">
-                  <i class="fa fa-list nav-icon"></i>
-                  <p>Articles List</p>
-                </a>
+                {% link request 'home' 'Articles List' %}
               </li>
               <li class="nav-item">
-                <a href="{% url 'account:article-create' %}" class="nav-link active">
-                  <i class="fa fa-edit nav-icon"></i>
-                  <p>Add Article</p>
-                </a>
+                {% link request 'article-create' 'Add Article' %}
               </li>
             </ul>
           </li>

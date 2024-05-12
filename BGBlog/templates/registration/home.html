@@ -44,6 +44,7 @@
                                             <a target="_blank" class="badge badge-primary" href="{% url 'blog:detail' article.slug %}">Show Article in Site</a>
                                         {% else %}
                                             <span class="badge badge-danger">Drafted</span>
+                                            <a target="_blank" class="badge badge-secondary" href="{% url 'blog:preview' article.pk %}">Preview Article</a>
                                         {% endif %}
 
                                         {% if user.is_superuser %}
