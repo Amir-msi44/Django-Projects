@@ -37,13 +37,29 @@
             {{ form.publish|as_crispy_field }}
           </div>
           {% if user.is_superuser %}
-          <div class="col-6">
-            {{ form.author|as_crispy_field }}
-          </div>
-          <div class="col-6">
-            {{ form.status|as_crispy_field }}
-          </div>
+            <div class="col-6">
+              {{ form.author|as_crispy_field }}
+            </div>
+            <div class="col-6">
+              {{ form.status|as_crispy_field }}
+            </div>
+          {% else %}
+            <div id="div_id_status" class="form-group">
+              <label for="id_status" class=" requiredField">
+              Status<span class="asteriskField">*</span>
+              </label>
+              <div>
+                <select name="status" class="select form-control" required="" id="id_status">
+                    <option value="">---------</option>
+                    <option value="d">Draft</option>
+                    <option value="i">Send to Admin</option>
+                </select>
+              </div>
+            </div>
           {% endif %}
+          <div class="col-6">
+            {{ form.is_special|as_crispy_field }}
+          </div>
         </div>
         <button class="btn btn-success">Save</button>
         {% if user.is_superuser and request.resolver_match.kwargs.pk %}

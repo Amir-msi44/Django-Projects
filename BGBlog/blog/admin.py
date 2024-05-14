@@ -36,7 +36,7 @@ def make_drafted(modeladmin, request, queryset):
         )
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ("title", "thumbnail_tag", "author", "slug", "publish", "status", "category_to_str")
+    list_display = ("title", "thumbnail_tag", "author", "slug", "publish", "is_special", "status", "category_to_str")
     list_filter = ('publish', 'status', 'author')
     search_fields = ('title', 'description')
     prepopulated_fields = {'slug': ('title',)}

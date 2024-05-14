@@ -34,6 +34,8 @@ class Article(models.Model):
     STATUS_CHOICES = (
         ('d', 'Draft'),
         ('p', 'Published'),
+        ('i', 'investigation'), #pending
+        ('b', 'Back'),
     )
 
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='articles')
@@ -45,6 +47,7 @@ class Article(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    is_special = models.BooleanField(default=False, verbose_name="Premium Articles")
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
 
     class Meta:
