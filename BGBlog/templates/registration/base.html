@@ -39,7 +39,7 @@
     </ul>
     <!-- Right navbar links -->
     <div class="ml-auto">
-      <form method="post" action="{% url 'account:logout' %}">
+      <form method="post" action="{% url 'logout' %}">
         {% csrf_token %}
         <button type="submit" class="btn btn-outline-light"><i class="fas fa-sign-out-alt"></i></button>
       </form>
