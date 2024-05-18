@@ -8,6 +8,7 @@ from .models import Article, Category
 from account.models import User
 from account.mixins import AuthorValidMixin
 
+
 # Create your views here.
 # def home(request, page=1):
 #     articles_list = Article.objects.published()

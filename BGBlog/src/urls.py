@@ -23,6 +23,8 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('login/', Login.as_view(), name='login'),
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/', include('api.urls')),
 ]
 
 from django.conf import settings

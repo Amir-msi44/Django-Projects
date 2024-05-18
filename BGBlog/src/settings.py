@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'crispy_forms',
     "crispy_bootstrap4",
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -149,3 +150,11 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
